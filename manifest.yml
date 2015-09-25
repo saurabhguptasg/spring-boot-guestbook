@@ -1,0 +1,8 @@
+---
+applications:
+- name: guestbook
+  memory: 512M
+  instances: 1
+  host: guestbook
+  path: ./target/guestbook-0.0.1-SNAPSHOT.jar
+  services: [mysql-db]
