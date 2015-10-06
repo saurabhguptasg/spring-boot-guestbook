@@ -2,7 +2,6 @@ package io.pivotal.fe.demo.guestbook.service;
 
 import io.pivotal.fe.demo.guestbook.domain.Message;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
 
 /**
  * @author sgupta
