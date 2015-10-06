@@ -2,12 +2,12 @@ angular.module('guestbook', [ 'ngRoute' ])
   .config(function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/', {
-		templateUrl : 'home.html',
-		controller : 'home'
+		templateUrl : 'message.html',
+		controller : 'message'
 	}).otherwise('/');
 
   })
-  .controller('home', function($scope, $http) {
+  .controller('message', function($scope, $http) {
 	  $scope.save=function(){
 		  
 		  var message = $scope.message;
@@ -20,5 +20,9 @@ angular.module('guestbook', [ 'ngRoute' ])
 				  $scope.message.message = "";
 			  });
 		  });
-	  }	  
-  });
+	  }	
+  }
+  .controller('cloudInfo'){
+	  
+  }
+  );
