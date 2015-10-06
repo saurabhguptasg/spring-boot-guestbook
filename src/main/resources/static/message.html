@@ -14,18 +14,18 @@
 	<button type="submit" class="btn btn-primary" ng-disabled="!(!!message.name && !!message.message)">Save</button>
 </form>
 
-<div class="container-fluid" ng-show="messageList">
+<div class="container-fluid" ng-show="messageList && messageList!=''">
 <h3>List of Guests</h3>
 	<div class="row">	
 		<div class="col-xs-3">Name</div>
    		<div class="col-xs-3">Message</div>
     	<div class="col-xs-3">Date</div>
-    	<div class="col-xs-3">Fortune</div>
+    	<div class="col-xs-3" ng-show="false">Fortune</div>
 	</div>
 	<div class="row" ng-repeat="message in messageList">	
-		<div class="col-xs-3" style="background-color:lightgray;">{{message.name}}</div>
-   		<div class="col-xs-3" style="background-color:whitesmoke;">{{message.message}}</div>
-    	<div class="col-xs-3" style="background-color:lightgray;">{{message.created}}</div>
-    	<div ng-show="message.fortune" class="col-xs-3" style="background-color:whitesmoke;">{{message.fortune}}</div>
+		<div class="col-xs-3" style="background-color:lightgray;margin:1px;">{{message.name}}</div>
+   		<div class="col-xs-3" style="background-color:whitesmoke;margin:1px;">{{message.message}}</div>
+    	<div class="col-xs-3" style="background-color:lightgray;margin:1px;">{{message.created}}</div>
+    	<div class="col-xs-3" style="background-color:whitesmoke;margin:1px;" ng-show="message.fortune" >{{message.fortune}}</div>
 	</div>
 </div>

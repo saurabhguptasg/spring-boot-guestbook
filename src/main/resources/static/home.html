@@ -1,31 +1,29 @@
-<div class="alert alert-info" ng-show="waiting">		
-	Loading.. Please wait
+<div class="container fluid" ng-show="cloudinfo">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3"><h3>Cloud Information</h3></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-3">App Name:</div>
+   		<div class="col-xs-6">{{cloudinfo.name}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-3">Host Name:</div>
+   		<div class="col-xs-6">{{cloudinfo.host_name}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-3">Instance IP:</div>
+   		<div class="col-xs-6">{{cloudinfo.ip}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-3">Instance Port:</div>
+   		<div class="col-xs-6">{{cloudinfo.port}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-3">Instance Index:</div>
+   		<div class="col-xs-6">{{cloudinfo.instance_index}}</div>
+	</div>
 </div>
-<form role="form" ng-submit="save()">
-	<div class="form-group">
-		<label for="name">Name:</label> 
-		<input type="text"
-			class="form-control" id="name" name="name" ng-model="message.name"/>
-	</div>
-	<div class="form-group">
-		<label for="message">Message:</label> <input type="text"
-			class="form-control" id="message" name="message" ng-model="message.message"/>
-	</div>
-	<button type="submit" class="btn btn-primary" ng-disabled="!(!!message.name && !!message.message)">Save</button>
-</form>
-
-<div class="container-fluid" ng-show="messageList">
-<h3>List of Guests</h3>
-	<div class="row">	
-		<div class="col-xs-3">Name</div>
-   		<div class="col-xs-3">Message</div>
-    	<div class="col-xs-3">Date</div>
-    	<div class="col-xs-3">Fortune</div>
-	</div>
-	<div class="row" ng-repeat="message in messageList">	
-		<div class="col-xs-3" style="background-color:lightgray;">{{message.name}}</div>
-   		<div class="col-xs-3" style="background-color:whitesmoke;">{{message.message}}</div>
-    	<div class="col-xs-3" style="background-color:lightgray;">{{message.created}}</div>
-    	<div ng-show="message.fortune" class="col-xs-3" style="background-color:whitesmoke;">{{message.fortune}}</div>
-	</div>
+<div style="margin-top: 20px;">
+	<button type="button" class="btn btn-primary" ng-click="goMessage()">GuestBook Message</button>
+	<button type="button" class="btn btn-danger pull-right" ng-click="goKillApp()">Kill App</button>
 </div>
