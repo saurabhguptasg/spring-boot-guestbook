@@ -1,7 +1,6 @@
 package io.pivotal.fe.demo.guestbook.controller;
 
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-public class CloudInfoController {
+public class ServiceController {
 
 	private Cloud cloud;
 
@@ -34,11 +33,6 @@ public class CloudInfoController {
 			return properties;
 		}
 		ApplicationInstanceInfo cloudInfo = cloud.getApplicationInstanceInfo();
-
-		/*cloudInfo.getProperties().get("name");
-		cloudInfo.getProperties().get("host");
-		cloudInfo.getProperties().get("port");
-		cloudInfo.getProperties().get("instance_index");*/
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {
