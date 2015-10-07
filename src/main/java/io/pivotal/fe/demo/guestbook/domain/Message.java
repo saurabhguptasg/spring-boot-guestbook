@@ -2,6 +2,9 @@ package io.pivotal.fe.demo.guestbook.domain;
 
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,7 +31,9 @@ public class Message implements Serializable {
 
   private Date created;
 
-  protected Message(){}
+  protected Message(){
+	    this.created = new Date();
+  }
 
   public Message(String name, String message) {
     this.name = name;
@@ -55,7 +60,8 @@ public class Message implements Serializable {
   public void setMessage(String message) {
     this.message = message;
   }
-
+  
+  @JsonSerialize(using=JsonDateSerializer.class)
   public Date getCreated() {
     return created;
   }
