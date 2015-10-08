@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudException;
 import org.springframework.cloud.CloudFactory;
@@ -17,10 +18,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.pivotal.fe.demo.guestbook.service.FortuneService;
+
 @Controller
 public class ServiceController {
 
 	private Cloud cloud;
+	
+    @Autowired
+    FortuneService service;
+
+    @RequestMapping(value = "/fortune", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public String remoteFortune() {
+    	ObjectMapper mapper = new ObjectMapper();
+    	String json = "";
+		try {
+			json = mapper.writeValueAsString(service.remoteFortune());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return json;
+    }
 
 	@RequestMapping(value = "/cloudinfo", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
