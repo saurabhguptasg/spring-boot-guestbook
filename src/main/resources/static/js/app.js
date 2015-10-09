@@ -12,20 +12,30 @@ angular.module('guestbook', [ 'ngRoute' ])
 
   })
   .controller('message', function($scope, $http) {
+	  var _this=this;
 	  this.loadData = function() {
 		  $http.get("/message/all").success(function(data){
-			  console.log("Get after saving data: " + JSON.stringify(data));
+			  console.log("Get messages: " + JSON.stringify(data));
 			  $scope.messageList = data;
 		  });
 	  }
-	  var _this=this;
 	  $scope.save=function(){
-		  var message = $scope.message;
-		  $http.post("/message", message).success(function(data){
-			  console.log("Saved: " + data);
-			  _this.loadData();
-			  $scope.message.name = "";
-			  $scope.message.message = "";
+		  $scope.waiting = true;
+		  $http.get("/fortune").success(function(data){
+			  console.log("Get fortune: " + JSON.stringify(data));
+			  var fortune = data;
+			  var message = {
+					  name: $scope.message.name,
+					  message: $scope.message.message,
+					  fortune: fortune
+			  	};
+			  $http.post("/message", message).success(function(data){
+				  console.log("Saved: " + data);
+				  _this.loadData();
+				  $scope.message.name = "";
+				  $scope.message.message = "";
+				  $scope.waiting = false;
+			  });
 		  });
 	  }
 	  this.loadData();
