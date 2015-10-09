@@ -11,11 +11,6 @@ public class FortuneService {
 
     @Autowired
     RestTemplate restTemplate;
-
-    @HystrixCommand(fallbackMethod = "fallbackFortune")
-    public String randomFortune() {
-        return restTemplate.getForObject("http://fortunes/random", String.class);
-    }
     
     @HystrixCommand(fallbackMethod = "fallbackFortune")
     public String remoteFortune() {
